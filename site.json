@@ -1,0 +1,24 @@
+{
+  "appName": "YourName",
+  "appDescription": "",
+  "developerName": "",
+  "developerURL": "",
+  "background": "#ffffff",
+  "path": "/",
+  "url": "https://demo.jp",
+  "start_url": "/",
+  "theme_color": "#2AB1D1",
+  "lang": "ja",
+  "display": "standalone",
+  "orientation": "portrait",
+  "version": 1.0,
+
+  "format": true,
+  "gtm": null,
+  "ga": null,
+  "sw": null,
+  "amp": false,
+  "jquery": true,
+  "ogp": false,
+  "manifest": false
+}

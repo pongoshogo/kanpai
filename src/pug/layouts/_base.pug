@@ -1,0 +1,50 @@
+block variables
+
+doctype html
+html(lang='ja')
+  head
+    if title
+      title= `${title} | ${site.appName}`
+    else
+      title= site.appName
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width ,initial-scale=1')
+    if site.protect
+      meta(name='robots', content='noindex')
+    if site.manifest
+      link(rel='manifest', href='/manifest.manifest')
+    link(rel='stylesheet', href='/style.css')
+    if site.protect
+      style.
+        .is-protect {
+          display: none;
+        }
+    block meta
+  body(class=site.protect && 'is-protect', data-password=site.protect)
+    include /layouts/_header
+
+    block content
+
+    include /layouts/_footer
+
+    if site.jquery
+      script(
+        src='https://code.jquery.com/jquery-3.3.1.min.js'
+        integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+        crossorigin='anonymous')
+
+    script(src='/script.js')
+    block script
+    if site.protect
+      script.
+        var passWord = $('body').data('password');
+        if (localStorage.auth === passWord) {
+          $('body').removeClass('is-protect');
+        } else {
+          setTimeout(function () {
+            if (prompt('password') === passWord) {
+              $('body').removeClass('is-protect');
+              localStorage.auth = passWord;
+            }
+          }, 1000);
+        }
